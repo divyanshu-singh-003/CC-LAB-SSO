@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../../../hooks/useLogin";
+import { useAuthContext } from "../../context/AuthContext";
+
 const Login = () => {
+	const { setAuthUser } = useAuthContext();
+
 	const [fullName, setfullName] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -9,7 +13,14 @@ const Login = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await login(fullName, password);
+		localStorage.setItem("sso-user", JSON.stringify({
+			fullName:fullName,
+			password:password
+
+		}));
+			setAuthUser({"fullName":fullName,
+		"password":password});
+
 	};
 
 	return (
