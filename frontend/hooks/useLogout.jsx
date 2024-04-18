@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import { useAuthContext } from "../src/context/AuthContext";
 
-import toast from "react-hot-toast";
 
 const useLogout = () => {
 	const [loading, setLoading] = useState(false);
@@ -16,7 +15,7 @@ const useLogout = () => {
 			localStorage.removeItem("sso-user");
 			setAuthUser(null);
 		} catch (error) {
-			toast.error(error.message);
+			console.log(error.message);
 		} finally {
 			setLoading(false);
 		}

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { useAuthContext } from "../src/context/AuthContext";
 const useLogin = () => {
 	const [loading, setLoading] = useState(false);
@@ -24,7 +23,7 @@ const useLogin = () => {
 			localStorage.setItem("sso-user", JSON.stringify(data));
 			setAuthUser(data);
 		} catch (error) {
-			toast.error(error.message);
+			console.log(error.message);
 		} finally {
 			setLoading(false);
 		}
@@ -36,7 +35,7 @@ export default useLogin;
 
 function handleInputErrors(fullName, password) {
 	if (!fullName || !password) {
-		toast.error("Please fill in all fields");
+		console.log("Please fill in all fields");
 		return false;
 	}
 
